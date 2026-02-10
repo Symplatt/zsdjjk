@@ -8,7 +8,8 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import('@/views/HomeView.vue'),
-      meta: { keepAlive: true }
+      // 修改这里：添加 meta 字段隐藏导航栏和 Footer
+      meta: { keepAlive: true, hideNavbar: true, hideFooter: true }
     },
     {
       // 修改详情页路由配置
