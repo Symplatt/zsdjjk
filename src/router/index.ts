@@ -1,36 +1,32 @@
-// router/index.ts
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 const router = createRouter({
+  // 使用 Hash 模式，避免部署时的路径问题
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      // 路由懒加载：只有访问该路由时才加载对应文件
       component: () => import('@/views/HomeView.vue'),
-      meta: { keepAlive: true } // 标记需要缓存的页面
+      meta: { keepAlive: true }
     },
-
-
-    // 404页面
     {
-      path: '/:pathMatch(.*)*',
-      name: 'not-found',
-      component: () => import('@/views/NotFound.vue'),
+      // 修改详情页路由配置
+      path: '/character/:id',
+      name: 'character-detail',
+      component: () => import('@/views/CharacterDetail.vue'),
+      // 添加这两个 meta 字段
       meta: {
-        title: '404',
-        hideFooter: true,
+        hideNavbar: true, // 隐藏导航栏
+        hideFooter: true  // 隐藏 Footer
       }
+    },
+    {
+      // 匹配所有未知路径，跳转到首页或404
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
-  ],
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { top: 0 }
-    }
-  }
+  ]
 })
 
 export default router

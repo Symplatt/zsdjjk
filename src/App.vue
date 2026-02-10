@@ -1,22 +1,17 @@
 <!-- App.vue -->
 <template>
   <div class="app">
-    <!-- 导航栏 -->
-    <NavigationBar />
+    <NavigationBar v-if="!$route.meta.hideNavbar" />
 
-    <!-- 内容区域 -->
     <div class="app-content">
       <RouterView v-slot="{ Component }">
-        <!-- 仅缓存路由 meta 中标记为 keepAlive 的组件 -->
         <KeepAlive>
           <component :is="Component" v-if="$route.meta.keepAlive" :key="$route.name" />
         </KeepAlive>
-        <!-- 不缓存的组件直接渲染 -->
         <component :is="Component" v-if="!$route.meta.keepAlive" :key="$route.fullPath" />
       </RouterView>
     </div>
 
-    <!-- 根据路由元信息决定是否隐藏 Footer -->
     <Footer v-if="!$route.meta.hideFooter" />
   </div>
 </template>
