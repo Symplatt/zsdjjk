@@ -213,252 +213,121 @@
 </script>
 
 <style scoped>
-  /* 引入谷歌字体 */
   @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Shippori+Mincho:wght@800&display=swap');
 
-  /* 页面根容器样式 */
   .jjk-body {
-    /* 定义黑色背景变量 */
     --jjk-black: #0a0a0a;
-
-    /* 定义深灰背景变量 */
     --jjk-dark-gray: #1f1f1f;
-
-    /* 定义浅灰文字变量 */
     --jjk-light-gray: #d4d4d4;
-
-    /* 定义主题红变量 */
     --jjk-red: #a30000;
-
-    /* 定义强调色变量 */
     --jjk-accent: var(--jjk-red);
-
-    /* 定义书法字体变量 */
     --font-brush: 'Shippori Mincho', 'Noto Serif SC', serif;
-
-    /* 定义正文字体变量 */
     --font-body: 'Noto Serif SC', serif;
 
-    /* 固定定位 */
     position: fixed;
-
-    /* 顶部对齐 */
     top: 0;
-
-    /* 左侧对齐 */
     left: 0;
-
-    /* 设置最高层级 */
     z-index: 999;
-
-    /* Flex 布局居中内容 */
     display: flex;
-
-    /* 垂直居中 */
     align-items: center;
-
-    /* 水平居中 */
     justify-content: center;
-
-    /* 宽度占满屏幕 */
     width: 100vw;
-
-    /* 高度占满屏幕 */
     height: 100vh;
-
-    /* 清除默认内边距 */
     padding: 0;
-
-    /* 清除默认边距 */
     margin: 0;
-
-    /* 隐藏溢出内容 */
     overflow: hidden;
-
-    /* 应用字体 */
     font-family: var(--font-body);
-
-    /* 应用文字颜色 */
     color: var(--jjk-light-gray);
-
-    /* 应用背景色 */
     background-color: var(--jjk-black);
-
-    /* 设置噪点背景图片 */
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 
-  /* 截图包裹容器 */
   .capture-wrapper {
-    /* 相对定位 */
     position: relative;
-
-    /* 宽度占视口 90% */
     width: 90vw;
-
-    /* 最大宽度限制 */
     max-width: 1100px;
-
-    /* 高度占视口 85% */
-    height: 85vh;
+    height: 100vh;
+    padding: 5vh 30px 8vh;
   }
 
-  /* 布局网格 */
   .layout-grid {
-    /* 包含边框和内边距 */
     box-sizing: border-box;
-
-    /* Grid 布局 */
     display: grid;
-
-    /* 定义两列比例 */
     grid-template-columns: 40% 1fr;
-
-    /* 定义列间距，从 3vw 减小到 2vw 使布局更紧凑 */
     gap: 2vw;
-
-    /* 高度拉伸 */
     align-items: stretch;
-
-    /* 宽度填满 */
     width: 100%;
-
-    /* 高度填满 */
     height: 100%;
   }
 
-  /* 左侧立绘列 */
   .portrait-column {
-    /* 相对定位 */
     position: relative;
-
-    /* Flex 居中 */
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /* 宽度填满 */
     width: 100%;
-
-    /* 高度填满 */
     height: 100%;
-
-    /* 隐藏溢出 */
     overflow: hidden;
   }
 
-  /* 立绘外框 */
   .portrait-frame {
-    /* 相对定位 */
     position: relative;
-
-    /* Flex 居中 */
     display: flex;
     align-items: center;
     justify-content: center;
-
-    /* 尺寸填满 */
     width: 100%;
     height: 100%;
-
-    /* 背景色 */
     background-color: var(--jjk-dark-gray);
-
-    /* 边框样式 */
     border: 2px solid var(--jjk-black);
-
-    /* 错位阴影效果 */
     box-shadow:
       5px 5px 0 var(--jjk-accent),
       -2px -2px 0 var(--jjk-light-gray);
   }
 
-  /* 立绘图片 */
   .portrait-frame img {
-    /* 尺寸填满 */
     width: 100%;
     height: 100%;
-
-    /* 裁剪适应 */
     object-fit: cover;
-
-    /* 顶部对齐 */
     object-position: top center;
-
-    /* 默认灰度滤镜 */
     filter: grayscale(20%) contrast(110%) brightness(95%);
-
-    /* 过渡效果 */
     transition: filter 0.3s ease;
   }
 
-  /* 悬停去除灰度 */
   .portrait-frame:hover img {
     filter: grayscale(0%) contrast(110%);
   }
 
-  /* 立绘装饰文字 */
   .portrait-text {
-    /* 绝对定位 */
     position: absolute;
-
-    /* 书法字体 */
     font-family: var(--font-brush);
-
-    /* 字体大小 */
     font-size: clamp(32px, 4vh, 50px);
-
-    /* 字重 */
     font-weight: 900;
-
-    /* 红色字体 */
     color: var(--jjk-accent);
-
-    /* 字间距 */
     letter-spacing: 0.5vh;
-
-    /* 文字描边 */
     text-shadow: 2px 0 0 #000;
-
-    /* 禁止交互 */
     pointer-events: none;
-
-    /* 透明度 */
     opacity: 0.9;
-
-    /* 竖排文字 */
     writing-mode: vertical-rl;
   }
 
-  /* 左上角定位 */
   .text-top-left {
     top: 2vh;
     left: 1vw;
   }
 
-  /* 右下角定位 */
   .text-bottom-right {
     right: 1vw;
     bottom: 2vh;
   }
 
-  /* 右侧信息列 */
   .info-column {
-    /* Flex 垂直排列 */
     display: flex;
     flex-direction: column;
-
-    /* 水平居中 */
     align-items: center;
-
-    /* 高度填满 */
     height: 100%;
-
-    /* 隐藏溢出 */
     overflow: hidden;
   }
 
-  /* 内部容器宽度统一 */
   .info-header,
   .stats-row,
   .bio-section {
@@ -466,291 +335,137 @@
     max-width: 700px;
   }
 
-  /* 头部区域 */
   .info-header {
-    /* 禁止压缩 */
     flex-shrink: 0;
-
-    /* 底部内边距减小 */
     padding-bottom: 0.5vh;
-
-    /* 底部外边距减小，更紧凑 */
     margin-bottom: 1vh;
-
-    /* 文本左对齐 */
     text-align: left;
-
-    /* 红色下划线 */
     border-bottom: 0.4vh solid var(--jjk-accent);
   }
 
-  /* 角色名字 */
   .character-name {
-    /* 清除边距 */
     margin: 0;
-
-    /* 书法字体 */
     font-family: var(--font-brush);
-
-    /* 字体大小 */
     font-size: clamp(40px, 6vh, 80px);
-
-    /* 字重 */
     font-weight: 900;
-
-    /* 行高 */
     line-height: 1;
-
-    /* 颜色 */
     color: white;
-
-    /* 大写 */
     text-transform: uppercase;
-
-    /* 字间距 */
     letter-spacing: 0.2vw;
-
-    /* 文字阴影 */
     text-shadow:
       0.3vh 0.3vh 0 var(--jjk-accent),
       -1px -1px 0 var(--jjk-black);
   }
 
-  /* 副标题ID */
   .sub-name {
-    /* 块级显示 */
     display: block;
-
-    /* 顶部边距 */
     margin-top: 0.5vh;
-
-    /* 正文字体 */
     font-family: var(--font-body);
-
-    /* 字体大小 */
     font-size: clamp(14px, 1.5vh, 20px);
-
-    /* 粗体 */
     font-weight: bold;
-
-    /* 颜色 */
     color: var(--jjk-accent);
-
-    /* 大写 */
     text-transform: uppercase;
-
-    /* 字间距 */
     letter-spacing: 0.3em;
   }
 
-  /* 数据统计行 */
   .stats-row {
-    /* Flex 布局 */
     display: flex;
-
-    /* 禁止压缩 */
     flex-shrink: 0;
-
-    /* 移除间距，交由 space-between 控制 */
     gap: 0;
-
-    /* 垂直居中 */
     align-items: center;
-
-    /* 关键：两端对齐，左侧文字贴左，右侧图贴右 */
     justify-content: space-between;
-
-    /* 固定高度 */
     height: 35vh;
-
-    /* 减少底部边距 */
     margin-bottom: 1vh;
   }
 
-  /* 左侧属性列表 */
   .quick-stats {
-    /* Flex 垂直排列 */
     display: flex;
     flex-direction: column;
-
-    /* 元素间距 */
     gap: 1.5vh;
-
-    /* 垂直居中 */
     justify-content: center;
-
-    /* 右内边距，保持文字与分割线的距离 */
-    padding-right: 20px;
-
-    /* 右边框分割线 */
+    padding-right: 40px;
     border-right: 2px solid var(--jjk-dark-gray);
   }
 
-  /* 单个属性 */
   .stat-item {
-    /* Flex 布局 */
     display: flex;
-
-    /* 基线对齐 */
     align-items: baseline;
-
-    /* 关键：左对齐，确保文字靠左 */
     justify-content: flex-start;
   }
 
-  /* 属性标签 */
   .stat-label {
-    /* 固定宽度 */
     width: 3em;
-
-    /* 右边距 */
     margin-right: 1em;
-
-    /* 字体大小 */
     font-size: clamp(14px, 1.6vh, 16px);
-
-    /* 颜色 */
     color: #888;
-
-    /* 两端对齐 */
     text-align-last: justify;
   }
 
-  /* 属性值 */
   .stat-val {
-    /* 书法字体 */
     font-family: var(--font-brush);
-
-    /* 字体大小 */
     font-size: clamp(20px, 2.5vh, 28px);
-
-    /* 颜色 */
     color: white;
-
-    /* 不换行 */
     white-space: nowrap;
   }
 
-  /* 特殊属性值 */
   .stat-val.special {
-    /* 更大字号 */
     font-size: clamp(24px, 3vh, 32px);
-
-    /* 红色高亮 */
     color: var(--jjk-accent);
-
-    /* 红色光晕 */
     text-shadow: 0 0 5px rgb(163 0 0 / 50%);
   }
 
-  /* 雷达图容器 */
   .radar-chart-container {
-    /* 相对定位 */
     position: relative;
-
-    /* 高度填满 */
     height: 100%;
-
-    /* 正方形 */
     aspect-ratio: 1 / 1;
-
-    /* 移除负右边距，自然对齐 */
     margin-right: 0;
   }
 
-  /* SVG */
   .radar-svg {
-    /* 尺寸填满 */
     width: 100%;
     height: 100%;
-
-    /* 允许溢出 */
     overflow: visible;
   }
 
-  /* 网格线 */
   .radar-grid {
-    /* 填充色 */
     fill: rgb(255 255 255 / 5%);
-
-    /* 线条颜色 */
     stroke: #aaa;
-
-    /* 透明度 */
     stroke-opacity: 0.5;
-
-    /* 线条宽度 */
     stroke-width: 2;
   }
 
-  /* 轴线 */
   .radar-axis {
     stroke: #aaa;
     stroke-opacity: 0.5;
     stroke-width: 1.5;
   }
 
-  /* 数据多边形 */
   .radar-data-polygon {
-    /* 投影 */
     filter: drop-shadow(0 0 8px var(--jjk-accent));
-
-    /* 填充红色，半透明 */
     fill: rgb(163 0 0 / 25%);
-
-    /* 描边红色 */
     stroke: var(--jjk-accent);
-
-    /* 描边宽度 */
     stroke-width: 2.5;
-
-    /* 动画 */
     transition: all 0.5s ease;
   }
 
-  /* 雷达图文字 */
   .radar-label {
-    /* 书法字体 */
     font-family: var(--font-brush);
-
-    /* 字号 */
     font-size: clamp(16px, 2vh, 20px);
-
-    /* 字重 */
     font-weight: 900;
-
-    /* 阴影 */
     text-shadow: 2px 2px 0 #000;
-
-    /* 填充白色 */
     fill: #fff;
   }
 
-  /* 档案区 */
   .bio-section {
-    /* 相对定位 */
     position: relative;
-
-    /* 自动填充剩余高度 */
     flex-grow: 1;
-
-    /* 允许收缩 */
     min-height: 0;
-
-    /* 清除内边距 */
     padding: 0;
-
-    /* 背景色 */
     background-color: rgb(10 10 10 / 70%);
-
-    /* 边框 */
     border: 1px solid var(--jjk-light-gray);
-
-    /* 切角 */
     clip-path: polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
   }
 
-  /* 档案区边框装饰 */
   .bio-section::before {
     position: absolute;
     inset: 0;
@@ -760,28 +475,16 @@
     border: 1px solid rgb(255 255 255 / 20%);
   }
 
-  /* 滚动区域 */
   .bio-scroll-container {
-    /* 盒模型 */
     box-sizing: border-box;
-
-    /* 高度填满 */
     height: 100%;
-
-    /* 内边距 */
     padding: 2vh 2vw;
-
-    /* 允许垂直滚动 */
     overflow-y: auto;
-
-    /* 滚动条颜色 */
     scrollbar-color: var(--jjk-accent) #111;
-
-    /* 细滚动条 */
     scrollbar-width: thin;
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
 
-  /* Webkit 滚动条样式 */
   .bio-scroll-container::-webkit-scrollbar {
     width: 6px;
   }
@@ -794,9 +497,7 @@
     background: var(--jjk-accent);
   }
 
-  /* 档案标签 */
   .bio-tag {
-    /* 粘性定位 */
     position: sticky;
     top: 0;
     z-index: 10;
@@ -807,20 +508,16 @@
     font-size: clamp(14px, 1.8vh, 18px);
     font-weight: bold;
     color: black;
-
-    /* 背景色 */
     background: var(--jjk-accent);
     box-shadow: 3px 3px 0 rgb(0 0 0 / 80%);
     transform: skewX(-15deg);
   }
 
-  /* 标签文字反向倾斜 */
   .bio-tag span {
     display: block;
     transform: skewX(15deg);
   }
 
-  /* 正文 */
   .bio-text p {
     margin: 0 0 1.2em;
     font-size: clamp(14px, 1.8vh, 18px);
@@ -829,22 +526,18 @@
     text-align: justify;
   }
 
-  /* 换行保留 */
   .pre-wrap {
     white-space: pre-wrap;
   }
 
-  /* 引用块 */
   .bio-text blockquote {
     padding: 1em;
     margin: 1.5em 0;
-    font-style: italic;
     color: #ddd;
     background: rgb(163 0 0 / 10%);
     border-left: 4px solid var(--jjk-accent);
   }
 
-  /* 引用标题 */
   .bio-text blockquote h6 {
     margin: 0 0 0.5em;
     font-family: var(--font-brush);
@@ -852,7 +545,6 @@
     color: var(--jjk-accent);
   }
 
-  /* 404 样式 */
   .not-found-jjk {
     display: flex;
     flex-direction: column;
@@ -864,7 +556,6 @@
     text-shadow: 2px 2px 0 #000;
   }
 
-  /* 移动端适配 */
   @media (aspect-ratio <= 1/1) {
     .jjk-body {
       position: relative;
