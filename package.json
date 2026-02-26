@@ -1,5 +1,5 @@
 {
-  "name": "vue3-template-2",
+  "name": "zsdjjk",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -22,6 +22,7 @@
   "dependencies": {
     "axios": "^1.13.2",
     "cloc": "^2.6.0-cloc",
+    "html-to-image": "^1.11.13",
     "lucide-vue-next": "^0.563.0",
     "markdown-it": "^14.1.0",
     "vue": "^3.5.26",

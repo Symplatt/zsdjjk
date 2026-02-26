@@ -23,6 +23,16 @@ const router = createRouter({
       }
     },
     {
+      // 初音初华专用页面
+      path:'/misumi',
+      name:'misumi',
+      component:()=>import('@/views/MisumiView.vue'),
+      meta:{
+        hideNavbar:true,
+        hideFooter:true
+      }
+    },
+    {
       // 匹配所有未知路径，跳转到首页或404
       path: '/:pathMatch(.*)*',
       redirect: '/'
