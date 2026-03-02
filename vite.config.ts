@@ -9,7 +9,7 @@ import Components from 'unplugin-vue-components/vite'
 export default defineConfig({
   plugins: [
     vue(),
-    // vueDevTools(), // 屏幕下方那个调试按钮
+    vueDevTools(), // 屏幕下方那个调试按钮
     Components({
       // 自动导入组件，无需手动注册
     }),
